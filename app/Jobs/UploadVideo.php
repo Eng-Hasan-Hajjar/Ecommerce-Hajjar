@@ -18,9 +18,9 @@ class UploadVideo implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($request)
     {
-        //
+        $this->request = $request;
     }
 
     /**
@@ -30,6 +30,6 @@ class UploadVideo implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $path = uploadVideo('videos', $this -> request['file']);
     }
 }

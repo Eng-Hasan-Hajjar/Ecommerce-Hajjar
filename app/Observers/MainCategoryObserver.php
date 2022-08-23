@@ -25,7 +25,7 @@ class MainCategoryObserver
      */
     public function updated(MainCategory $mainCategory)
     {
-        //
+        $mainCategory -> vendors()-> update(['active' => $mainCategory -> active]);
     }
 
     /**

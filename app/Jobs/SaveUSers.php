@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Jobs;
+use App\Models\Winner;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -18,9 +19,10 @@ class SaveUSers implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public $request;
+    public function __construct($request)
     {
-        //
+        $this -> request = $request;
     }
 
     /**
@@ -30,6 +32,14 @@ class SaveUSers implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $data=[];
+        foreach ($this -> request['ids'] as $id){
+            $data[]=[
+                'user_id'  =>  $id,
+                'offer_title'  =>  $this -> request['offer_title']
+            ];
+        }
+
+        Winner::insert($data);
     }
 }

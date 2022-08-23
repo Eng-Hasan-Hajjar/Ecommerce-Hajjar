@@ -18,10 +18,12 @@ class SendMails implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public $data;
+    public function __construct($data)
     {
-        //
+        $this -> data = $data;
     }
+
 
     /**
      * Execute the job.
@@ -30,6 +32,8 @@ class SendMails implements ShouldQueue
      */
     public function handle()
     {
-        //
+        foreach ($this -> data as $_data) {
+            \Mail::to($_data -> email)->send(new \App\Mail\TestMail());
+        }
     }
 }
