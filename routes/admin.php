@@ -63,11 +63,11 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
     Route::get('/', 'DashboardController@index') -> name('admin.dashboard');
 
 ########################### Begin Languages Route ########################
-
+/*
 Route::group(['namespace'=> 'languages'],function(){
             Route::get('/','LangaugesController@index')->name(admin.langauges);
 });
-
+*/
 ########################### End Languages Route ########################
 
 });
