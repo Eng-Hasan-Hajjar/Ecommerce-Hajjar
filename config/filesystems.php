@@ -41,6 +41,21 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        
+        'maincategories' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/images/maincategories/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+
+        'vendors' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/images/vendors/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+
 
         's3' => [
             'driver' => 's3',
