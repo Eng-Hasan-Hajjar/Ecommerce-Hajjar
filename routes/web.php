@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,47 +14,18 @@ use App\Http\Controllers\Admin\DashboardController;
 |
 */
 
-Route::get('/site', function () {
-    return view('layouts.site');
-});
-
-
-Route::get('/home', function () {
-    return view('front.home');
-});
-
-
-
-
-
-
-
-
-
-
-route::get('sendSms//','HomeController@sendSms');
-
 Route::get('/', function () {
-    return view('front.home');
+    return view('welcome');
 });
 
-Auth::routes();
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-//Route::get('/home', 'HomeCo
-//Route::get('/send-mails', 'HomeController@sendMails');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-
-
-######################tasks#############
-
-
-Route::get('offers','Homecontroller@createOffer');
-Route::post('offers','Homecontroller@saveOffer')->name('save.users');
-
-
-Route::get('video','Homecontroller@getVideo');
-Route::post('video','Homecontroller@upload')->name('upload.video');
-
-
-
-
+require __DIR__.'/auth.php';

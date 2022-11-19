@@ -15,9 +15,9 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected    function redirectTo(Request $request)
+    protected function redirectTo( $request)
     {
-     
+
         if (!$request->expectsJson()) {
             if ($request->is('admin/*'))
                 return route('admin.login');

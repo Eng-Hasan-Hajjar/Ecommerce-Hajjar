@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +16,10 @@ use Illuminate\Http\Request;
 */
 Route::get('/admin/login', function () {
     return view('admin.auth.login');
-}); 
-Route::post('/admin/login' ,'LoginController@login') -> name('admin.login');
+})->name('/admin/login'); ;
+//Route::post('/admin/login' ,'LoginController@login') -> name('admin.login');
 
-
+Route::post('/admin/login', [ 'as' => 'admin.login', 'uses' => 'LoginController@login']);
 
 
 Route::get('/', function () {
@@ -29,11 +30,14 @@ Route::get('/admin', function () {
 
     return view('layouts.admin');
 });
-Route::get('/admin/dashboard', function () {
+/*Route::get('/admin/dashboard', function () {
 
     return view('admin.dashboard');
-});
 
+
+});*/
+
+Route::get('/admin/dashboard', [DashboardController::class,'index']);
 
 
 
