@@ -14,12 +14,12 @@ class CreateLanguagesTable extends Migration
     public function up()
     {
         Schema::create('languages', function (Blueprint $table) {
-            $table->id();
-            $table->string('abbr',10)->nullable(false);
-            $table->string('locale',200)->default(null); 
-            $table->string('name',100)->nullable(false);
-            $table->enum('direction', ['ltr', 'rtl'])->default('rtl')->nullable(false);
-            $table->tinyInteger('active',1)->default(1)->nullable(false);
+          //  $table->integer('id');
+            $table->string('abbr',10)->nullable(true);
+            $table->string('locale',200)->default(null);
+            $table->string('name',100)->nullable(true);
+            $table->enum('direction', ['ltr', 'rtl'])->default('rtl')->nullable(true);
+            $table->tinyInteger('active',1)->nullable(true);
 
             $table->timestamps();
         });

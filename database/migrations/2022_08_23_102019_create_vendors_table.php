@@ -14,30 +14,24 @@ class CreateVendorsTable extends Migration
     public function up()
     {
         Schema::create('vendors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',150)->nullable(false);
-            $table->string('logo',200)->nullable(false);
-            $table->integer('translation_of',10)->unsigned()->nullable(false);
-            $table->string('name',150)->nullable(false);
-            $table->string('slug',150)->default(null);
-         
-            $table->tinyInteger('active',1)->default(1)->nullable(false);//COMMENT '0 => inactive 1=> active',
+
+            $table->string('name')->nullable(false);
+            $table->string('logo')->nullable(false);
+            $table->string('mobile')->nullable(false);
+
+            //  `address` text NOT NULL,
+            $table->string('address')->nullable(false);
+            //  `email` varchar(100) DEFAULT NULL,
+            $table->string('email')->default(null);
+            // `active` tinyint(1) NOT NULL DEFAULT '0',
+            $table->tinyInteger('active')->nullable(false);//COMMENT '0 => inactive 1=> active',
+            //    `category_id` int(11) NOT NULL,
+            $table->integer('category_id')->nullable(false);
+
 
             $table->timestamps();
         });
     }
-/*
-    `mobile` varchar(100) NOT NULL,
-    `address` text NOT NULL,
-    `email` varchar(100) DEFAULT NULL,
-    `category_id` int(11) NOT NULL,
-    `active` tinyint(1) NOT NULL DEFAULT '0',
-    `created_at` timestamp NULL DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT NULL,
-    */
-
-
-    
     /**
      * Reverse the migrations.
      *
